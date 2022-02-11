@@ -1,3 +1,4 @@
+# ce se intampla daca pun asta aici lol
 import discord
 import os
 import requests
@@ -15,7 +16,6 @@ starter_encouragements = [
   "Macar nu est imai prost ca viktorel",
   "Sus barbia de Chad"
 ]
-
 print(db.keys())
 
 def update_enouragements (encouraging_message):
