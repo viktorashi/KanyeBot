@@ -37,7 +37,13 @@ def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
   quote = json_data[0]['q'] + " -" + json_data[0]['a']
-  return(quote)
+  return quote
+
+def getKanyeQuote():
+  repose = requests.get("https://api.kanye.rest")
+  json_data = json.loads(reponse.text)
+  quote = "Kanye once said: \n" + json_data["quote"];
+  return quote
 
 @client.event
 async def on_ready():
@@ -81,6 +87,9 @@ async def on_message(message):
 
   if any(word in msg for word in sad_words):
     await message.channel.send(random.choice(starter_encouragements))
+    
+  if msg.startswith("fa kanye"):
+    await message.channel.send(getKanyeQuote())
 
 keep_alive()
 client.run(token)
