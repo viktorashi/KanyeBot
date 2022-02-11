@@ -1,45 +1,86 @@
-import os
 import discord
+import os
 import requests
 import json
-import random 
-
-token = os.environ['token']
+import random
+from replit import db
+from keepalive import keep_alive
 client = discord.Client()
 
-sad_words = ["trist", "depresiv", "prost", "mor" , "moarte", "n-am chef", "mizerabil", "depressing", "depressed", "fucking", "fucking die"]
+sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "depressing"]
+token = os.environ['token']
 
-starter_encouregements = [
-  "Hai coaie sus maxilaru ala de Chad",
-  "Ba, macar nu esti la fel de prost ca Viktor, asa-i coaie?",
-  "Esti cel mai forta om/robot =)))) smr ce codar prst m-a fct"
+starter_encouragements = [
+  "Las' frate ca are balta peste",
+  "Macar nu est imai prost ca viktorel",
+  "Sus barbia de Chad"
 ]
+
+print(db.keys())
+
+def update_enouragements (encouraging_message):
+  if "encouragements" in db.keys():
+    encouragements = db["encouragements"]
+    encouragements.append(encouraging_message)
+    db["encouragements"] = encouragements
+  else:
+    db["encouragements"] = [encouraging_message]
+
+def delete_encouragement(index):
+  if len(db["encouragements"]) - 1  > index:
+     del db["encouragements"][index]
+     return True
+  return False
+  
 
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
   quote = json_data[0]['q'] + " -" + json_data[0]['a']
-  return quote
+  return(quote)
 
 @client.event
 async def on_ready():
-  print("Da coaie, {0.user}".format(client), "sunt in viata, cce faci?")
+  print('Am efectual pula in cur! {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
   if message.author == client.user:
     return
+
   msg = message.content
-  if msg.startswith("fa sunt trist"):
-    await message.channel.send(get_quote() + "\n gata, mai fericit? (da/nu)")
-    # if await message.conent.startswith("nu"):
-    #    await message.channel.send("Atunci dute-n mortii matii")
-    # elif await message.conent.startswith("da"):
-    #    await message.channel.send("Cu placere in mortii tai")
-  elif msg.startswith("fa"):  
-    await message.channel.send("Uhh dute-n mortii mati")
+
+  options = starter_encouragements
+  if "encouragements" in db.keys():
+    options = options + list (db["encouragements"])
+
+  if msg.startswith('fa sunt trist'):
+      # await message.channel.send(get_quote() + "\n esti fericit acm?")
+      await message.channel.send(random.choice(options))
+   
+  if msg.startswith("fa nou"):
+    encouraging_message = msg.split("fa nou ",1)[1]
+    update_enouragements(encouraging_message)
+    await message.channel.send('Am pus "{}" in baza de date'.format(encouraging_message))
+
+  if msg.startswith("fa sterge"):
+    encouragements = []
+    if "encouragements" in db.keys():
+      index = int(msg.split("fa sterge",1)[1])
+      if delete_encouragement(index):
+        encouragements = list(db["encouragements"])
+      else:
+        await message.channel.send("Hoo coaie ca nu am atatea mesaje")
+    await message.channel.send(encouragements)
+
+  if msg.startswith("fa lista"):
+    if "encouragements" in db.keys():
+       await message.channel.send(list(db["encouragements"]))
+    else:
+       await message.channel.send(db["E goala baza de date coaie"])
+
   if any(word in msg for word in sad_words):
-    await message.channel.send(random.choice(starter_encouregements))
+    await message.channel.send(random.choice(starter_encouragements))
 
-
+keep_alive()
 client.run(token)
