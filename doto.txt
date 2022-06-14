@@ -1,0 +1,1 @@
+1. Sa tina context AI- u adica doar sa faci un stirng mare la care se adauga fiecare mesaj de dupa fa ai si se trimite ala cu totu gen
