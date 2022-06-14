@@ -34,7 +34,11 @@ def completeaza(prompt):
   completie = openai.Completion.create(
         engine = "text-davinci-002",
         prompt = prompt,
-        max_tokens = 300
+        max_tokens = 300,
+        temperature = 0.6,
+        frequency_penalty=0,
+        presence_penalty=0
+
     )
   print(completie)
   return completie["choices"][0]["text"]
