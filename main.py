@@ -34,7 +34,7 @@ def completeaza(prompt):
   completie = openai.Completion.create(
         engine = "text-davinci-002",
         prompt = prompt,
-        max_tokens = 720
+        max_tokens = 300
     )
   print(completie)
   return completie["choices"][0]["text"]
@@ -52,9 +52,9 @@ def completeaza(prompt):
 
 #@client.command()
 
-def ai(prompt, channel):
+async def ai(prompt, channel):
   output = completeaza(prompt)
-  channel.send(output)
+  await channel.send(output)
   
 
 # async def pa(ctx):
@@ -81,7 +81,7 @@ async def on_message(message):
     if message.content.lower().startswith('fa ai'):
       msg = message.content.split('fa ai')[1]
       print(msg)
-      ai(msg, message.channel)
+      await ai(msg, message.channel)
       
 
     # if message.content.lower().startswith('fa code'):
