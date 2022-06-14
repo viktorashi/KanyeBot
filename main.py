@@ -8,9 +8,10 @@ import random
 #sa tina serveru pornit
 from keepalive import keep_alive
 
-token = "OTQwMzQyNDE0ODAyMDQyODkx.YgGAHg.hze8Nb4IAyj1b6V-zJVqS3OD5hs"
+openaiToken = os.environ["openaiKey"]
+discordToken= os.environ["discordKey"]
 # my_secret = os.environ['openai']
-#openai.api_key = mysecret
+# openai.api_key = mysecret
 
 intents = discord.Intents.default()
 #sa asculte comenzi
@@ -248,4 +249,4 @@ async def on_ready():
 #run dat shit
   
 keep_alive()
-client.run(token)
+client.run(discordToken)
