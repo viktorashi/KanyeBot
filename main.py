@@ -81,7 +81,7 @@ async def on_message(message):
     if message.content.lower().startswith('fa ai'):
       msg = message.content.split('fa ai')[1]
       print(msg)
-      await ai(msg, message.channel)
+      ai(msg, message.channel)
       
 
     # if message.content.lower().startswith('fa code'):
