@@ -4,14 +4,14 @@ import os
 import requests
 import json
 import random
-# import openai
+import openai
 #sa tina serveru pornit
 
 
 openaiToken = os.environ["openaiKey"]
 discordToken= os.environ["discordKey"]
-# my_secret = os.environ['openai']
-# openai.api_key = mysecret
+
+openai.api_key = openaiToken
 
 intents = discord.Intents.default()
 #sa asculte comenzi
@@ -30,14 +30,14 @@ client = discord.Client()
   # print(completie)
   # channel.send(completie["choices"][0]["text"])
 
-# def completeaza(prompt):
-#   completie = #openai.completion.create(
-#         engine = "text-davinci-002",
-#         prompt = prompt,
-#         max_tokens = 720
-#     )
-#   print(completie)
-#   return completie["choices"][0]["text"]
+def completeaza(prompt):
+  completie = openai.completion.create(
+        engine = "text-davinci-002",
+        prompt = prompt,
+        max_tokens = 720
+    )
+  print(completie)
+  return completie["choices"][0]["text"]
 
 
 
@@ -52,9 +52,9 @@ client = discord.Client()
 
 #@client.command()
 
-# def ai(prompt):
-#   output = completeaza(prompt)
-#   channel.send(output)
+def ai(prompt, channel):
+  output = completeaza(prompt)
+  channel.send(output)
   
 
 # async def pa(ctx):
@@ -81,7 +81,7 @@ async def on_message(message):
     if message.content.lower().startswith('fa ai'):
       msg = message.content.split('fa ai')[1]
       print(msg)
-      # await ai(msg, message.channel)
+      await ai(msg, message.channel)
       
 
     # if message.content.lower().startswith('fa code'):
