@@ -113,6 +113,7 @@ async def on_message(message):
     if message.content.lower().startswith('fa sunttrist'):
       await sunt_trist(message.channel)
 
+
     # if message.content.lower().startswith('fa lista'):
     #   await lista(message.channel)
 
@@ -170,7 +171,11 @@ async def kanye(ctx):
 
 #@client.command()
 async def sunt_trist(ctx):
- await ctx.send(random.choice(starter_encouragements))
+  ran = random.choice([0,1])
+  if(ran):
+    await ctx.send(get_quote())
+  else:
+    await ctx.send(random.choice(starter_encouragements))
 
 #@client.command()
 async def pl(ctx):
