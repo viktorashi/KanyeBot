@@ -248,5 +248,5 @@ async def on_ready():
 
 #run dat shit
   
-keep_alive()
+
 client.run(discordToken)
