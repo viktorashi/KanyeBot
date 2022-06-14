@@ -6,7 +6,7 @@ import json
 import random
 # import openai
 #sa tina serveru pornit
-from keepalive import keep_alive
+
 
 openaiToken = os.environ["openaiKey"]
 discordToken= os.environ["discordKey"]
