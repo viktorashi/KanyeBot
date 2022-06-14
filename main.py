@@ -24,8 +24,8 @@ async def completeCode(instruction, code,channel):
   model="code-davinci-002",
   input=code,
   instruction=instruction,
-  temperature=0.5,
-  # top_p=1
+  temperature=0,
+  top_p=1
 )
   print(completie)
   await channel.send(completie["choices"][0]["text"])
