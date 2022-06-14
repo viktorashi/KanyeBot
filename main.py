@@ -19,16 +19,16 @@ intents = discord.Intents.default()
 #sa asculte pt inceputuri de mesaj
 client = discord.Client()
 
-# async def completeCode(instruction, code,channel):
-  # completie = #openai.Edit.create(
-#   model="code-davinci-edit-001",
-#   input=code,
-#   instruction=instruction,
-#   temperature=0.5
-#   # top_p=1
-# )
-  # print(completie)
-  # channel.send(completie["choices"][0]["text"])
+async def completeCode(instruction, code,channel):
+  completie = openai.Edit.create(
+  model="code-davinci-edit-001",
+  input=code,
+  instruction=instruction,
+  temperature=0.5,
+  # top_p=1
+)
+  print(completie)
+  await channel.send(completie["choices"][0]["text"])
 
 def completeaza(prompt):
   completie = openai.Completion.create(
@@ -85,14 +85,14 @@ async def on_message(message):
       await message.channel.send(output)
       
 
-    # if message.content.lower().startswith('fa code'):
-    #   msg = message.content.split('fa code')[1].split('\n')
-    #   instructions = msg[0]
-    #   code =  '\n'.join(msg[1:])
-    #   print(msg)
-    #   print(instructions)
-    #   print(code)
-    #   await completeCode(instructions,code,message.channel)
+    if message.content.lower().startswith('fa code'):
+      msg = message.content.split('fa code')[1].split('\n')
+      instructions = msg[0]
+      code =  '\n'.join(msg[1:])
+      print(msg)
+      print(instructions)
+      print(code)
+      await completeCode(instructions,code,message.channel)
       
     if message.content.lower().startswith('fa pa'):
       await pa(message.channel)
@@ -113,8 +113,8 @@ async def on_message(message):
     if message.content.lower().startswith('fa sunttrist'):
       await sunt_trist(message.channel)
 
-    if message.content.lower().startswith('fa lista'):
-      await lista(message.channel)
+    # if message.content.lower().startswith('fa lista'):
+    #   await lista(message.channel)
 
 #nu
 starter_encouragements = [
@@ -170,7 +170,7 @@ async def kanye(ctx):
 
 #@client.command()
 async def sunt_trist(ctx):
- await ctx.send(random.choice(options))
+ await ctx.send(random.choice(starter_encouragements))
 
 #@client.command()
 async def pl(ctx):
@@ -185,11 +185,11 @@ async def pl(ctx):
 #   await message.channel.send('Am pus "{}" in baza de date'.format(encouraging_message))
 
 #@client.command()
-async def lista(ctx):
-  if "encouragements" in db.keys():
-    await ctx.send(list(db["encouragements"]))
-  else:
-    await ctx.send("E goala baza de date coaie")
+# async def lista(ctx):
+#   if "encouragements" in db.keys():
+#     await ctx.send(list(db["encouragements"]))
+#   else:
+#     await ctx.send("E goala baza de date coaie")
 
 
 
