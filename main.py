@@ -81,7 +81,8 @@ async def on_message(message):
     if message.content.lower().startswith('fa ai'):
       msg = message.content.split('fa ai')[1]
       print(msg)
-      await ai(msg, message.channel)
+      output = completeaza(msg)
+      await message.channel.send(output)
       
 
     # if message.content.lower().startswith('fa code'):
