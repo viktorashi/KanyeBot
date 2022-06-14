@@ -21,7 +21,7 @@ client = discord.Client()
 
 async def completeCode(instruction, code,channel):
   completie = openai.Edit.create(
-  model="code-davinci-edit-001",
+  model="code-davinci-002",
   input=code,
   instruction=instruction,
   temperature=0.5,
