@@ -57,13 +57,13 @@ async def ai(prompt, channel):
   await channel.send(output)
   
 
-# async def pa(ctx):
-#   quote = getKanyeQuote()
-#   prompt = 'What the fuck did Kanye mean when he said: "' + quote + '"?\n'
-#   print(quote)
-#   await ctx.send(prompt)
-#   await ctx.send("\n\n Phd. Armpit Musky, Reeboks dusty says: " + completeaza(prompt))
-# #
+async def pa(ctx):
+  quote = getKanyeQuote()
+  prompt = 'What the fuck did Kanye mean when he said: "' + quote + '"?\n'
+  print(quote)
+  await ctx.send(prompt)
+  await ctx.send("\n\n Phd. Armpit Musky, Reeboks dusty says: " + completeaza(prompt))
+
 
 
 ####toate chestiile de kanye de aici
@@ -94,8 +94,8 @@ async def on_message(message):
     #   print(code)
     #   await completeCode(instructions,code,message.channel)
       
-    # if message.content.lower().startswith('fa pa'):
-    #   await pa(message.channel)
+    if message.content.lower().startswith('fa pa'):
+      await pa(message.channel)
 
     if message.content.lower().startswith('fa cf'):
       await cf(message.channel)
