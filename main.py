@@ -31,7 +31,7 @@ client = discord.Client()
   # channel.send(completie["choices"][0]["text"])
 
 def completeaza(prompt):
-  completie = openai.completion.create(
+  completie = openai.Completion.create(
         engine = "text-davinci-002",
         prompt = prompt,
         max_tokens = 720
