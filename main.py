@@ -81,16 +81,17 @@ async def on_message(message):
     if message.author == client.user:
         return
       
+      
     #ca sa poti sa vb cu AI
     if message.content.lower().startswith('fa ai'):
-      msg = message.content.split('fa ai')[1]
+      msg = message.content.split('fa ai ' or "Fa ai ")[1]
       print(msg)
       output = completeaza(msg)
       await message.channel.send(output)
       
 
     if message.content.lower().startswith('fa code'):
-      msg = message.content.split('fa code')[1].split('\n')
+      msg = message.content.lower().split('fa code ' or "Fa code ")[1].split('\n')
       instructions = msg[0]
       code =  '\n'.join(msg[1:])
       print(msg)
