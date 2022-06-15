@@ -49,16 +49,16 @@ def completeaza(prompt):
 
 
 
-#comanda pe care-o folosesti (fa)
-  
-#seteaza comanda pe care o folosim
+
+
+   
 
 
 
 
 #ia quote de la kanye si intreaba ce ar zice marie curie la acest suicide note
 
-#@client.command()
+
 
 async def ai(prompt, channel):
   output = completeaza(prompt)
@@ -122,7 +122,7 @@ async def on_message(message):
     await pa(message.channel)
 
   elif message.content.lower().startswith('fa cf'):
-    await cf(message.channel)
+    await message.channel.send("Cmf coaie")
 
   elif message.content.lower().startswith('fa kanye'):
     await kanye(message.channel)
