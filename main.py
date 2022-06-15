@@ -39,7 +39,7 @@ def completeaza(prompt):
         engine = "text-davinci-002",
         prompt = prompt,
         max_tokens = 300,
-        temperature = 0.4,
+        temperature = 0.57,
         frequency_penalty=1.8,
         presence_penalty=1.8
 
