@@ -6,7 +6,7 @@ import json
 import random
 import openai
 # from dotenv import load_dotenv
-load_dotenv()
+#load_dotenv()
 #sa tina serveru pornit
 
 
