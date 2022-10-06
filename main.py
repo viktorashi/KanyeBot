@@ -85,6 +85,7 @@ sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "depressing"]
 @client.event
 async def on_message(message):
   conversationtString = ""
+  
   if message.author == client.user:
     return
     #ca sa poti sa vb cu AI
