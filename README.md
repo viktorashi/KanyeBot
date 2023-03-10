@@ -1,3 +1,3 @@
 # KanyeBot
-1.Get in touch with ur inner Kanu
-2. Get called on when ur being sed
+1.A discord bot that acts like kanye
+2. He also a bit more supportive
